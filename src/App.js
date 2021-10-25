@@ -1,14 +1,14 @@
-import "./App.css";
+import React from "react";
 import { Route } from "react-router-dom";
+import { Provider } from "react-redux";
 import Home from "./Pages/Home";
-import Char from "./Pages/Char";
+import store from "./store";
 
 function App() {
   return (
-    <>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/charector/:id" component={Char} />
-    </>
+    <Provider store={store}>
+      <Route component={Home} exact path="/" />
+    </Provider>
   );
 }
 
