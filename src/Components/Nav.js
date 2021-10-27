@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ yengiMahsulotQoshish }) => {
   return (
     <ul>
       <li>
@@ -16,8 +17,28 @@ const Nav = () => {
       <li>
         <Link to="/login">Login</Link>
       </li>
+      <li>
+        <button
+          onClick={() => {
+            yengiMahsulotQoshish("nimadir");
+          }}
+        >
+          qoshish
+        </button>
+      </li>
     </ul>
   );
 };
 
-export default Nav;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    yengiMahsulotQoshish: (maxsulot) => {
+      dispatch({
+        type: "qoshish",
+        payload: maxsulot,
+      });
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Nav);

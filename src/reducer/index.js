@@ -1,27 +1,12 @@
 import { combineReducers } from "redux";
+import cartReducer from "./cartReducer";
+import productReducer from "./productReducer";
+import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
-  cart: function (state = [], action) {
-    switch (action.type) {
-      case "qoshish":
-        return {
-          ...state,
-          cart: [...state.cart, action.payload],
-        };
-      case "olish":
-        return {
-          ...state,
-          cart: state.cart.filter((item) => {
-            return item.id !== action.payload;
-          }),
-        };
-      default:
-        return state;
-    }
-  },
-  products: function (state = {}, action) {
-    return state;
-  },
+  cart: cartReducer,
+  products: productReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

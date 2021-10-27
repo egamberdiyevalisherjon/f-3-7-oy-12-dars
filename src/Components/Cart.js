@@ -1,13 +1,25 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import { removeProduct } from "../actions/cart";
 
-const Cart = ({ nimadir }) => {
-  console.log(nimadir);
-  return <div>Cart: 0</div>;
+const Cart = () => {
+  const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      Cart:
+      <ul>
+        {cart.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
+      </ul>
+      <br />
+      <button onClick={() => dispatch(removeProduct())}>olish</button>
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return { nimadir: state.cart };
-};
-
-export default connect(mapStateToProps)(Cart);
+export default Cart;
